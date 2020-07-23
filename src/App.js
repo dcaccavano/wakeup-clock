@@ -1,17 +1,10 @@
 import React from 'react';
-import useLocalStorage from './utils/use-local-storage';
+import Settings from './components/Settings';
 
 function App() {
-  const [name, setName] = useLocalStorage('name', 'Bob');
-
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Enter your name"
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
+      <Settings />
     </div>
   );
 }
