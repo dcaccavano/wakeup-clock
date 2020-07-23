@@ -1,6 +1,7 @@
 import React from 'react';
 import useLocalStorage from '../../utils/use-local-storage';
 import { TimePicker } from 'antd';
+import ColorPicker from './ColorPicker';
 import 'antd/dist/antd.css';
 import moment from 'moment';
 
@@ -26,6 +27,9 @@ const Settings = () => {
         minuteStep={5}
         format={format}
       />
+      <ColorPicker type={'day'} />
+      <ColorPicker type={'wakeup'} />
+      <ColorPicker type={'night'} />
     </div>
   );
 }
