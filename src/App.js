@@ -51,7 +51,7 @@ const App = () => {
 
   React.useEffect(() => {
     updateBackgroundColor(now);
-  }, [now])
+  }, [now, wakeupStart, dayStart, nightStart])
 
   React.useEffect(() => {
     updateBackgroundColor(now);
