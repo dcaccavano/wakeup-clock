@@ -1,7 +1,5 @@
 import React from 'react';
-import ColorPicker from './ColorPicker';
 import CustomSlider from './CustomSlider';
-import WakeupTimePicker from './WakeupTimePicker';
 
 const Settings = ({
   dayStart,
