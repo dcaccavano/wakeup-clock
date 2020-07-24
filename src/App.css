@@ -1,38 +1,50 @@
-.App {
+.mainClock {
+  width: 100%;
   text-align: center;
+  font-size: 14rem;
+  line-height: 90vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mainClock.darkText {
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mainClock.lightText {
+  color: #fff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.settingsContainer {
+  height: 10rem;
+  transition: all 0.3s ease-in-out;
+  background: #fff;
+  width: 100vw;
 }
 
-.App-link {
-  color: #61dafb;
+.settingsContainer.isHidden {
+  top: -10rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.settingsContainer.isVisible {
+  top: 0;
+}
+
+.sliderDraggable {
+  height: 3.5rem;
+  margin-top: -.25rem;
+  border-radius: .25rem;
+}
+
+.ticksContainer {
+  margin-top: 48px;
+}
+
+.tick {
+}
+
+.tick .tickLabel {
+  position: absolute;
+  width: 80px;
+  margin-left: -40px;
+  margin-top: 1rem;
+  font-size: .75rem;
 }

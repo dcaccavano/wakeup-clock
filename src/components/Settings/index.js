@@ -16,51 +16,19 @@ const Settings = ({
   setWakeupColor,
   nightColor,
   setNightColor,
+  numToTime,
+  showSettings,
+  setShowSettings,
  }) => {
 
   return (
-    <div>
-      <div>
-        <label>Wakeup Time</label>
-        <div className="flex justify-start items-center">
-          <WakeupTimePicker
-            type={'wakeup'}
-            getter={wakeupStart}
-            setter={setwakeupStart}
-          />
-          <ColorPicker
-            type={'Wakeup'}
-            getter={wakeupColor}
-            setter={setWakeupColor}
-          />
-        </div>
-      </div>
-      <div>
-        <label>Day Time</label>
-        <WakeupTimePicker
-          type={'day'}
-          getter={dayStart}
-          setter={setDayStart}
-        />
-        <ColorPicker
-          type={'Day'}
-          getter={dayColor}
-          setter={setDayColor}
-        />
-      </div>
-      <div>
-        <label>Night Time</label>
-        <WakeupTimePicker
-          type={'night'}
-          getter={nightStart}
-          setter={setNightStart}
-        />
-        <ColorPicker
-          type={'Night'}
-          getter={nightColor}
-          setter={setNightColor}
-        />
-      </div>
+    <div className={`settingsContainer shadow-lg fixed inset-0 border-box py-12 px-8 ${ showSettings ? 'isVisible' : 'isHidden'}`}>
+      <button
+        className="absolute top-0 right-0 mt-4 mr-4"
+        onClick={(e) => setShowSettings(false)}
+      >
+        Hide Settings
+      </button>
       <CustomSlider
         dayStart={dayStart}
         setDayStart={setDayStart}
@@ -74,6 +42,7 @@ const Settings = ({
         setWakeupColor={setWakeupColor}
         nightColor={nightColor}
         setNightColor={setNightColor}
+        numToTime={numToTime}
       />
     </div>
   );

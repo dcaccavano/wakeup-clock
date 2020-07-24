@@ -1,35 +1,29 @@
 import React from 'react';
 import { SwatchesPicker } from 'react-color';
 
-const ColorPicker = ({ type, getter, setter }) => {
-
-  const [displayPicker, setDisplayPicker] = React.useState(false);
+const ColorPicker = ({ getter, setter, show, setShow }) => {
 
   const updateColor = color => {
     setter(color.hex);
-    setDisplayPicker(false);
+    setShow(false);
   };
 
   return (
-    <div>
-      <label>Color</label>
-      <button
-        onClick={() => setDisplayPicker(true)}
-        className="p-2 border border-gray-700"
-      >
-        <span
-          className="block h-4 w-8 rounded"
-          style={{ background: getter }}></span>
-      </button>
+    <React.Fragment>
       {
-        displayPicker &&
-        <SwatchesPicker
-          color={getter}
-          onChangeComplete={updateColor}
-        />
-      }
+        show &&
+        <React.Fragment>
+          <div onClick={(e) => setShow(false)} className="inset-0 shade w-screen h-screen fixed" ></div>
+          <div className="pickerWrapper absolute inset-0 w-auto h-auto mt-12">
+            <SwatchesPicker
+              color={getter}
+              onChangeComplete={updateColor}
+            />
+          </div>
+        </React.Fragment>
 
-    </div>
+      }
+    </React.Fragment>
   );
 }
 

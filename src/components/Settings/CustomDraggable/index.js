@@ -1,21 +1,21 @@
 import React from 'react';
-import moment from 'moment';
 import Draggable from 'react-draggable';
 
-const CustomDraggable = ({ getter, setter }) => {
+const CustomDraggable = ({ type, numToTime, getter, setter }) => {
 
   const [percent, setPercent] = React.useState(getter / 96);
   const [parentWidth, setParentWidth] = React.useState(null);
   const [leftOffset, setLeftOffset] = React.useState(null);
+  const [showTool, setShowTool] = React.useState(false);
 
-  const handleStop = e => {
+  const handleDrag = e => {
     let newPercent, newValue;
-    if (e.clientX > parentWidth) {
+    if ((e.clientX - 32) > parentWidth) {
       newPercent = 1
     } else if (e.clientX < 0) {
       newPercent = 0;
     } else {
-      newPercent = e.clientX / parentWidth;
+      newPercent = (e.clientX - 32) / parentWidth;
     }
     newValue = Math.floor( 96 * newPercent );
     setter(newValue);
@@ -36,6 +36,7 @@ const CustomDraggable = ({ getter, setter }) => {
 
   return (
     <React.Fragment>
+    >
       { leftOffset &&
         <Draggable
           axis="x"
@@ -43,11 +44,19 @@ const CustomDraggable = ({ getter, setter }) => {
           scale={1}
           bounds={'parent'}
           defaultPosition={{x: leftOffset, y: 0}}
-          onStop={handleStop}>
+          onDrag={handleDrag}>
           <div
-            className="sliderDraggable absolute w-8 h-8"
+            className="sliderDraggable absolute w-4 text-white inset-0 bg-gray-700 hover:shadow-lg cursor-move"
+            onMouseEnter={() => setShowTool(true)}
+            onMouseLeave={() => setShowTool(false)}
           >
-            {getter}
+            {
+              showTool &&
+              <div className="absolute w-32 h-16 text-white inset-0 bg-gray-700 mt-16 border-box p-2 -ml-12 text-center rounded">
+                <p className="leading-none">{type} Time</p>
+                <p className="leading-none">{numToTime(getter)}</p>
+              </div>
+            }
           </div>
         </Draggable>
       }
