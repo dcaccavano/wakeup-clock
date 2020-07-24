@@ -1,35 +1,80 @@
 import React from 'react';
-import useLocalStorage from '../../utils/use-local-storage';
-import { TimePicker } from 'antd';
 import ColorPicker from './ColorPicker';
-import 'antd/dist/antd.css';
-import moment from 'moment';
+import CustomSlider from './CustomSlider';
+import WakeupTimePicker from './WakeupTimePicker';
 
-const Settings = () => {
-  const format = 'h:mm a'
-
-  const { RangePicker } = TimePicker;
-  const [dayStart, setDayStart] = useLocalStorage('dayStart', moment());
-  const [dayEnd, setDayEnd] = useLocalStorage('dayEnd', moment());
-
-  const setTimes = times => {
-    times[0] && setDayStart(times[0]);
-    times[1] && setDayEnd(times[1]);
-  }
+const Settings = ({
+  dayStart,
+  setDayStart,
+  wakeupStart,
+  setwakeupStart,
+  nightStart,
+  setNightStart,
+  dayColor,
+  setDayColor,
+  wakeupColor,
+  setWakeupColor,
+  nightColor,
+  setNightColor,
+ }) => {
 
   return (
     <div>
-      <RangePicker
-        allowClear={false}
-        value={[moment(dayStart), moment(dayEnd)]}
-        onChange={setTimes}
-        use12Hours
-        minuteStep={5}
-        format={format}
+      <div>
+        <label>Wakeup Time</label>
+        <div className="flex justify-start items-center">
+          <WakeupTimePicker
+            type={'wakeup'}
+            getter={wakeupStart}
+            setter={setwakeupStart}
+          />
+          <ColorPicker
+            type={'Wakeup'}
+            getter={wakeupColor}
+            setter={setWakeupColor}
+          />
+        </div>
+      </div>
+      <div>
+        <label>Day Time</label>
+        <WakeupTimePicker
+          type={'day'}
+          getter={dayStart}
+          setter={setDayStart}
+        />
+        <ColorPicker
+          type={'Day'}
+          getter={dayColor}
+          setter={setDayColor}
+        />
+      </div>
+      <div>
+        <label>Night Time</label>
+        <WakeupTimePicker
+          type={'night'}
+          getter={nightStart}
+          setter={setNightStart}
+        />
+        <ColorPicker
+          type={'Night'}
+          getter={nightColor}
+          setter={setNightColor}
+        />
+      </div>
+      <CustomSlider
+        dayStart={dayStart}
+        setDayStart={setDayStart}
+        wakeupStart={wakeupStart}
+        setwakeupStart={setwakeupStart}
+        nightStart={nightStart}
+        setNightStart={setNightStart}
+        dayColor={dayColor}
+        setDayColor={setDayColor}
+        wakeupColor={wakeupColor}
+        setWakeupColor={setWakeupColor}
+        nightColor={nightColor}
+        setNightColor={setNightColor}
       />
-      <ColorPicker type={'day'} />
-      <ColorPicker type={'wakeup'} />
-      <ColorPicker type={'night'} />
     </div>
   );
 }

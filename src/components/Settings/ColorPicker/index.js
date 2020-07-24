@@ -1,29 +1,30 @@
 import React from 'react';
-import useLocalStorage from '../../../utils/use-local-storage';
 import { SwatchesPicker } from 'react-color';
 
-const ColorPicker = ({ type }) => {
+const ColorPicker = ({ type, getter, setter }) => {
 
-  const [typeColor, setTypeColor] = useLocalStorage(`${type}Color`, '#ffffff');
   const [displayPicker, setDisplayPicker] = React.useState(false);
 
   const updateColor = color => {
-    setTypeColor(color.hex);
+    setter(color.hex);
     setDisplayPicker(false);
   };
 
   return (
     <div>
+      <label>Color</label>
       <button
         onClick={() => setDisplayPicker(true)}
-        className="selectedColor"
+        className="p-2 border border-gray-700"
       >
-        <span style={{ background: typeColor }}></span>
+        <span
+          className="block h-4 w-8 rounded"
+          style={{ background: getter }}></span>
       </button>
       {
         displayPicker &&
         <SwatchesPicker
-          color={typeColor}
+          color={getter}
           onChangeComplete={updateColor}
         />
       }
