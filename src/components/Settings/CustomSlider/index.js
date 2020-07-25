@@ -64,7 +64,7 @@ const CustomSlider = ({
         <button
           onClick={(e) => setShowNightColorPicker(true)}
           style={{ background: nightColor }}
-          className="sliderBar border-none h-12 absolute w-full hover:shadow-lg"
+          className="sliderBar h-12 absolute w-full"
         >
         </button>
       </div>
@@ -82,13 +82,13 @@ const CustomSlider = ({
               show={showWakeupColorPicker}
               setShow={setShowWakeupColorPicker}
             />
+            <div className="border-l border-r border-gray-400 absolute -mt-8 text-center textSpan w-full text-gray-600">Waking Up</div>
             <button
               onClick={(e) => setShowWakeupColorPicker(true)}
               style={{
                 background: wakeupColor,
               }}
-              className="box wakeupBox border-none h-12 absolute w-full hover:shadow-lg" >
-              Wakeup
+              className="box wakeupBox h-12 absolute w-full" >
             </button>
           </div>
           <div
@@ -105,20 +105,20 @@ const CustomSlider = ({
               show={showDayColorPicker}
               setShow={setShowDayColorPicker}
             />
+            <div className="border-r border-gray-400 absolute -mt-8 text-center textSpan w-full text-gray-600">Daytime</div>
             <button
               onClick={(e) => setShowDayColorPicker(true)}
               style={{
                 background: dayColor,
               }}
-              className="box wakeupBox border-none h-12 absolute w-full hover:shadow-lg" >
-              Day
+              className="box wakeupBox h-12 absolute w-full" >
             </button>
           </div>
         </React.Fragment>
       }
-      <CustomDraggable type={'Wake up'} numToTime={numToTime} getter={wakeupStart} setter={setwakeupStart} />
-      <CustomDraggable type={'Day'} numToTime={numToTime} getter={dayStart} setter={setDayStart} />
-      <CustomDraggable type={'Bed'} numToTime={numToTime} getter={nightStart} setter={setNightStart} />
+      <CustomDraggable labelText={'Waking Up'} numToTime={numToTime} getter={wakeupStart} setter={setwakeupStart} />
+      <CustomDraggable labelText={'Day Begins'} numToTime={numToTime} getter={dayStart} setter={setDayStart} />
+      <CustomDraggable labelText={'Bed Time'} numToTime={numToTime} getter={nightStart} setter={setNightStart} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 
-const CustomDraggable = ({ type, numToTime, getter, setter }) => {
+const CustomDraggable = ({ labelText, numToTime, getter, setter }) => {
 
   const [percent, setPercent] = React.useState(getter / 96);
   const [parentWidth, setParentWidth] = React.useState(null);
@@ -46,17 +46,17 @@ const CustomDraggable = ({ type, numToTime, getter, setter }) => {
           defaultPosition={{x: leftOffset, y: 0}}
           onDrag={handleDrag}>
           <div
-            className="sliderDraggable absolute w-4 text-white inset-0 bg-gray-700 hover:shadow-lg cursor-move"
+            className="sliderDraggable -ml-2 absolute w-4 inset-0 bg-white cursor-move"
             onMouseEnter={() => setShowTool(true)}
             onMouseLeave={() => setShowTool(false)}
           >
-            {
-              showTool &&
-              <div className="absolute w-32 h-16 text-white inset-0 bg-gray-700 mt-16 border-box p-2 -ml-12 text-center rounded">
-                <p className="leading-none">{type} Time</p>
-                <p className="leading-none">{numToTime(getter)}</p>
-              </div>
-            }
+          {
+            showTool &&
+            <div className="absolute w-32 h-16 text-white inset-0 bg-gray-700 mt-16 border-box p-2 -ml-12 text-center rounded">
+              <p className="">{labelText}</p>
+              <p className="leading-none">{numToTime(getter)}</p>
+            </div>
+          }
           </div>
         </Draggable>
       }
