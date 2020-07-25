@@ -17,6 +17,7 @@ const Settings = ({
   numToTime,
   showSettings,
   setShowSettings,
+  reset,
  }) => {
 
   return (
@@ -26,6 +27,12 @@ const Settings = ({
         onClick={(e) => setShowSettings(false)}
       >
         Hide Settings
+      </button>
+      <button
+        className="absolute top-0 left-0 mt-4 ml-4 text-red-700"
+        onClick={reset}
+      >
+        Clear Settings
       </button>
       <CustomSlider
         dayStart={dayStart}

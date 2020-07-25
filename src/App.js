@@ -16,14 +16,24 @@ const App = () => {
   const [wakeupStart, setwakeupStart] = useLocalStorage('wakeupStart', 28);
   const [nightStart, setNightStart] = useLocalStorage('nightStart', 80);
 
-  const [dayColor, setDayColor] = useLocalStorage('dayColor', '#ffffff');
-  const [wakeupColor, setWakeupColor] = useLocalStorage('wakeupColor', '#ffffff');
-  const [nightColor, setNightColor] = useLocalStorage('nightColor', '#ffffff');
+  const [dayColor, setDayColor] = useLocalStorage('dayColor', '#fff9c4');
+  const [wakeupColor, setWakeupColor] = useLocalStorage('wakeupColor', '#81c784');
+  const [nightColor, setNightColor] = useLocalStorage('nightColor', '#455a64');
 
   const [now, setNow] = React.useState(nowToNum());
   const [backgroundColor, setBackgroundColor] = React.useState('#ffffff');
 
   const [showSettings, setShowSettings] = React.useState(false);
+
+  const reset = () => {
+    setDayStart(36);
+    setwakeupStart(28);
+    setNightStart(80);
+
+    setDayColor('#fff9c4');
+    setWakeupColor('#81c784');
+    setNightColor('#455a64');
+  }
 
   const updateBackgroundColor = now => {
     if (now > wakeupStart) {
@@ -114,6 +124,7 @@ const App = () => {
         numToTime={numToTime}
         showSettings={showSettings}
         setShowSettings={setShowSettings}
+        reset={reset}
       />
       <div
         style={{ background: backgroundColor }}
