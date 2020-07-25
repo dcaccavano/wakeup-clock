@@ -9,13 +9,24 @@ const CustomDraggable = ({ labelText, numToTime, getter, setter }) => {
   const [showTool, setShowTool] = React.useState(false);
 
   const handleDrag = e => {
+    console.log(e);
     let newPercent, newValue;
-    if ((e.clientX - 32) > parentWidth) {
-      newPercent = 1
-    } else if (e.clientX < 0) {
-      newPercent = 0;
-    } else {
-      newPercent = (e.clientX - 32) / parentWidth;
+    if (e.clientX) {
+      if ((e.clientX - 32) > parentWidth) {
+        newPercent = 1
+      } else if (e.clientX < 0) {
+        newPercent = 0;
+      } else {
+        newPercent = (e.clientX - 32) / parentWidth;
+      }
+    } else if (e.targetTouches) {
+      if ((e.targetTouches[0].clientX - 32) > parentWidth) {
+        newPercent = 1
+      } else if (e.targetTouches[0].clientX < 0) {
+        newPercent = 0;
+      } else {
+        newPercent = (e.targetTouches[0].clientX - 32) / parentWidth;
+      }
     }
     newValue = Math.floor( 96 * newPercent );
     setter(newValue);

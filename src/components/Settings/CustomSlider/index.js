@@ -82,7 +82,7 @@ const CustomSlider = ({
               show={showWakeupColorPicker}
               setShow={setShowWakeupColorPicker}
             />
-            <div className="border-l border-r border-gray-400 absolute -mt-8 text-center textSpan w-full text-gray-600">Waking Up</div>
+            <div className="border-l border-r border-gray-400 absolute -mt-8 text-center textSpan w-full text-gray-600">Waking</div>
             <button
               onClick={(e) => setShowWakeupColorPicker(true)}
               style={{
@@ -105,7 +105,7 @@ const CustomSlider = ({
               show={showDayColorPicker}
               setShow={setShowDayColorPicker}
             />
-            <div className="border-r border-gray-400 absolute -mt-8 text-center textSpan w-full text-gray-600">Daytime</div>
+            <div className="border-r border-gray-400 absolute -mt-8 text-center textSpan w-full text-gray-600">Day</div>
             <button
               onClick={(e) => setShowDayColorPicker(true)}
               style={{
