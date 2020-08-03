@@ -9,7 +9,6 @@ const CustomDraggable = ({ labelText, numToTime, getter, setter }) => {
   const [showTool, setShowTool] = React.useState(false);
 
   const handleDrag = e => {
-    console.log(e);
     let newPercent, newValue;
     if (e.clientX) {
       if ((e.clientX - 32) > parentWidth) {

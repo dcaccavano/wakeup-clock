@@ -1,23 +1,18 @@
 import React from 'react';
 import ColorPicker from '../ColorPicker';
 import CustomDraggable from '../CustomDraggable';
+import { ClockContext } from '../../../context';
 import moment from 'moment';
 
-const CustomSlider = ({
-  wakeupStart,
-  setwakeupStart,
-  dayStart,
-  setDayStart,
-  nightStart,
-  setNightStart,
-  wakeupColor,
-  setWakeupColor,
-  dayColor,
-  setDayColor,
-  nightColor,
-  setNightColor,
-  numToTime,
-}) => {
+const CustomSlider = () => {
+  const [
+    [wakeupStart, setwakeupStart, wakeupColor, setWakeupColor],
+    [dayStart, setDayStart, dayColor, setDayColor],
+    [nightStart, setNightStart, nightColor, setNightColor],
+    [now, setNow, nowToNum, numToTime],
+    [backgroundColor, setBackgroundColor],
+    format
+  ] = React.useContext(ClockContext);
 
   const [parentWidth, setParentWidth] = React.useState(null);
 
@@ -44,7 +39,8 @@ const CustomSlider = ({
       {
         parentWidth &&
         <div className="ticksContainer absolute w-full">
-          { ticks.map((tick) => <div
+          { ticks.map((tick, index) => <div
+              key={index}
               className={`tick absolute w-px h-4 bg-gray-400 ${ tick.label ? 'bg-gray-700' : ''}`}
               style={{left: Math.floor(( tick.value / 96 ) * parentWidth) }}
             >
